@@ -21,10 +21,10 @@ _PREFIXES = [
     "Sporting", "Unión", "Union",
 ]
 
-# Normalizar puntos en siglas: A.F.C. → AFC, F.C. → FC
-# No usar \b después del punto final porque . no es un caracter de palabra
-_DOTTED_ABBREV = re.compile(r'\b([A-Z])\.([A-Z])\.([A-Z])\.(?=\s|$)')
-_DOTTED_ABBREV2 = re.compile(r'\b([A-Z])\.([A-Z])\.(?=\s|$)')
+# Normalize dots in abbreviations: A.F.C. → AFC, F.C. → FC
+# No \b after the final dot because '.' is not a word character
+_DOTTED_ABBREV_3CHAR = re.compile(r'\b([A-Z])\.([A-Z])\.([A-Z])\.(?=\s|$)')
+_DOTTED_ABBREV_2CHAR = re.compile(r'\b([A-Z])\.([A-Z])\.(?=\s|$)')
 
 
 def remove_accents(text: str) -> str:
@@ -48,9 +48,9 @@ def _collapse(text: str) -> str:
 
 
 def _normalize_dots(text: str) -> str:
-    """Convierte A.F.C. → AFC, F.C. → FC, etc."""
-    text = _DOTTED_ABBREV.sub(lambda m: m.group(1) + m.group(2) + m.group(3), text)
-    text = _DOTTED_ABBREV2.sub(lambda m: m.group(1) + m.group(2), text)
+    """Converts A.F.C. → AFC, F.C. → FC, etc."""
+    text = _DOTTED_ABBREV_3CHAR.sub(lambda m: m.group(1) + m.group(2) + m.group(3), text)
+    text = _DOTTED_ABBREV_2CHAR.sub(lambda m: m.group(1) + m.group(2), text)
     return text
 
 

@@ -196,13 +196,10 @@ def _compose_image(
     cx_mid = width // 2
     cy_mid = cy
 
-    # bbox del texto
-    try:
-        bbox = draw.textbbox((0, 0), VS_TEXT, font=font)
-        tw = bbox[2] - bbox[0]
-        th = bbox[3] - bbox[1]
-    except AttributeError:
-        tw, th = draw.textsize(VS_TEXT, font=font)
+    # bbox of the text (Pillow >= 10.0 always has textbbox)
+    bbox = draw.textbbox((0, 0), VS_TEXT, font=font)
+    tw = bbox[2] - bbox[0]
+    th = bbox[3] - bbox[1]
 
     tx = cx_mid - tw // 2
     ty = cy_mid - th // 2
@@ -227,11 +224,8 @@ def _compose_image(
         ty_name = cy + logo_target_h // 2 + int(height * 0.02)
 
     for team_name, cx_team in [(team_a, cx_a), (team_b, cx_b)]:
-        try:
-            nb = draw.textbbox((0, 0), team_name, font=name_font)
-            nw = nb[2] - nb[0]
-        except AttributeError:
-            nw, _ = draw.textsize(team_name, font=name_font)
+        nb = draw.textbbox((0, 0), team_name, font=name_font)
+        nw = nb[2] - nb[0]
         nx = cx_team - nw // 2
         nstroke = max(1, name_size // 12)
         draw.text(

@@ -15,6 +15,8 @@ import io
 import os
 import queue
 import re
+import subprocess
+import sys
 import threading
 from datetime import datetime
 from pathlib import Path
@@ -574,7 +576,6 @@ class App(tk.Tk):
         if hasattr(self, "_last_report"):
             path = self._last_report.get("xlsx") or self._last_report.get("csv")
             if path and Path(path).exists():
-                import subprocess, sys
                 if sys.platform == "win32":
                     os.startfile(path)
                 elif sys.platform == "darwin":
@@ -589,7 +590,6 @@ class App(tk.Tk):
             for run_dir in runs:
                 rep = run_dir / "report.xlsx"
                 if rep.exists():
-                    import subprocess, sys
                     if sys.platform == "win32":
                         os.startfile(str(rep))
                     elif sys.platform == "darwin":

@@ -32,7 +32,8 @@ _SESSION.headers.update(
     }
 )
 
-# TheSportsDB free key (key "3" = free tier, limited)
+# TheSportsDB free/public key ("3" is the publicly documented free-tier key,
+# intentionally not a secret — see https://www.thesportsdb.com/api.php)
 _SPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/3"
 
 # Wikipedia API endpoint (any language)

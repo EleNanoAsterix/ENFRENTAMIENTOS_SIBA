@@ -95,7 +95,7 @@ def _write_xlsx(
     ws_fail.append(fail_headers)
     _style_header(ws_fail, fail_headers, fill="C00000")
 
-    fail_rows = [m for m in matches if m.get("match_status") not in ("GENERATED",)]
+    fail_rows = [m for m in matches if m.get("match_status") != "GENERATED"]
     for m in fail_rows:
         reasons = []
         logo_a_st = m.get("logo_a_status", "")

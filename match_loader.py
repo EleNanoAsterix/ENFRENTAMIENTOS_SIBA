@@ -26,7 +26,7 @@ _COL_MAP = {
     "COUNTRY A": "pais_a",
     "EQUIPO B": "equipo_b",
     "EQUIPO_B": "equipo_b",
-    "EQUPOB": "equipo_b",   # typo del CSV original: EQUPO B
+    "EQUPOB": "equipo_b",   # typo from original CSV: EQUPO B
     "EQUPO B": "equipo_b",
     "TEAM B": "equipo_b",
     "PAIS EQUIPO B": "pais_b",
